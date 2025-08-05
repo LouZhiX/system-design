@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mybatis-sql-logger-demo
+  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lzx.learn.systemdesign.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# MyBatis SQL日志配置
+mybatis:
+  sql:
+    logger:
+      # 是否启用SQL日志打印功能
+      enabled: true
+      # 是否打印SQL参数
+      show-parameters: true
+      # 是否打印SQL执行时间
+      show-execution-time: true
+      # 是否打印SQL结果行数
+      show-result-count: true
+      # 慢查询阈值（毫秒）
+      slow-query-threshold: 1000
+      # 日志级别：DEBUG, INFO, WARN, ERROR
+      log-level: INFO
+      # 是否格式化SQL语句
+      format-sql: true
+      # 是否显示SQL类型
+      show-sql-type: true
+
+logging:
+  level:
+    com.lzx.learn.systemdesign: DEBUG
+    org.apache.ibatis: DEBUG
